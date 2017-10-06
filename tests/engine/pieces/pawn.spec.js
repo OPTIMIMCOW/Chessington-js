@@ -5,6 +5,7 @@ import King from '../../../src/engine/pieces/king';
 import Board from '../../../src/engine/board';
 import Player from '../../../src/engine/player';
 import Square from '../../../src/engine/square';
+import Queen from '../../../src/engine/pieces/queen';
 
 describe('Pawn', () => {
 
@@ -12,7 +13,7 @@ describe('Pawn', () => {
     beforeEach(() => board = new Board());
 
     describe('white pawns', () => {
-        
+
         it('can only move one square up if they have already moved', () => {
             const pawn = new Pawn(Player.WHITE);
             board.setPiece(Square.at(1, 0), pawn);
@@ -85,6 +86,19 @@ describe('Pawn', () => {
             moves.should.not.deep.include(Square.at(5, 3));
         });
 
+        //francesca
+        it('pawn promotion - pawn becomes queen at row 7', () => {
+            //Arrange
+            const pawn = new Pawn(Player.WHITE);
+            board.setPiece(Square.at(6,3), pawn);
+
+            //Act
+            board.movePiece(Square.at(6,3), Square.at(7,3));
+                       
+            //Assert
+            const test = board.getPiece(Square.at(7,3)) instanceof Queen;
+            test.should.equal(true);
+        });
     });
 
     describe('black pawns', () => {

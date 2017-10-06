@@ -10,7 +10,7 @@ export default class Pawn extends Piece {
 
     killPawnMove(row, col, location, moves, board) {
         const tempSquare = new Square(location.row + row, location.col + col);
-        
+
         if (board.onBoard(tempSquare) && board.getPiece(tempSquare) && board.getPiece(tempSquare).player !== this.player && !(board.getPiece(tempSquare) instanceof King)) {
             moves.push(tempSquare);
         }
@@ -18,7 +18,7 @@ export default class Pawn extends Piece {
 
     runPawnMove(rowVector, location, moves, board) {
         const tempSquare = new Square(location.row + rowVector, location.col);
-        
+
         if (board.onBoard(tempSquare)) {
             const getPiece = board.getPiece(tempSquare);
             if (!getPiece) {
@@ -32,7 +32,7 @@ export default class Pawn extends Piece {
 
     getAvailableMoves(board) {
         const location = board.findPiece(this);
-        const moves = [];
+        let moves = [];
 
         if (this.player === Player.WHITE) {
             const firstSquareEmpty = this.runPawnMove(1, location, moves, board);
