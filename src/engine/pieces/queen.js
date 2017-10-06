@@ -1,4 +1,3 @@
-import Player from '../player';
 import Square from '../square';
 import Piece from './piece';
 
@@ -16,7 +15,7 @@ export default class Queen extends Piece {
         for (let r = 0; r < 8; r++) {
             for (let c = 0; c < 8; c++) {
                 const tempSquare = new Square(r, c);
-                if (!((r === location.row) && (c === location.col))) {
+                if (!tempSquare.equals(location)) {
                     if (r + c === sumLocation) {
                         legalMoves.push(tempSquare);
                     }
@@ -24,10 +23,10 @@ export default class Queen extends Piece {
                         legalMoves.push(tempSquare);
                     }
                     if (location.row === r) {
-                        legalMoves.push(Square.at(r, c));
+                        legalMoves.push(tempSquare);
                     }
                     if (location.col === c) {
-                        legalMoves.push(Square.at(r, c));
+                        legalMoves.push(tempSquare);
                     }
                 }
             }
