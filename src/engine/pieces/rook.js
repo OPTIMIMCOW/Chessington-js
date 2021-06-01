@@ -23,7 +23,6 @@ export default class Rook extends Piece {
 
         const location = board.findPiece(this);
         const arrayLegalMoves=[];
-
         for (let c = 0; c < 8; c++){
             if (location.col !== c){
                 arrayLegalMoves.push(Square.at(location.row, c));
@@ -60,8 +59,6 @@ export default class Rook extends Piece {
         //         i=8; // exit the for loop
         //     }
         // }
-
-        console.log(arrayLegalMoves);
         return arrayLegalMoves;
     }
 }
