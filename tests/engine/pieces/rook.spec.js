@@ -14,6 +14,7 @@ describe('Rook', () => {
         board.setPiece(Square.at(1, 2), rook);
 
         const moves = rook.getAvailableMoves(board);
+        console.log(moves);
 
         const expectedMoves = [
             // Horizontal
