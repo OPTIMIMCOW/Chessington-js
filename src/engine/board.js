@@ -21,10 +21,10 @@ export default class Board {
     }
 
     getPiece(square) {
-        if(square.row < 8 && square.row >= 0 && square.col < 8 && square.col >= 0){
+        if (square.row < 8 && square.row >= 0 && square.col < 8 && square.col >= 0) {
             return this.board[square.row][square.col];
-        }else{
-            return false;
+        } else {
+            return true;
         }
     }
 
@@ -40,7 +40,7 @@ export default class Board {
     }
 
     movePiece(fromSquare, toSquare) {
-        const movingPiece = this.getPiece(fromSquare);        
+        const movingPiece = this.getPiece(fromSquare);
         if (!!movingPiece && movingPiece.player === this.currentPlayer) {
             this.setPiece(toSquare, movingPiece);
             this.setPiece(fromSquare, undefined);
@@ -48,7 +48,18 @@ export default class Board {
         }
     }
 
-    filterMoves(moves){
+    filterMoves(moves) {
         return moves.filter(square => square.row < 8 && square.row >= 0 && square.col < 8 && square.col >= 0);
+    }
+
+    runMoves(row, col, location, moves, maxMoves) {
+        for (let i = 1; i <= maxMoves; i++){
+            let tempSquare = new Square(location.row + (i*row), location.col + (i*col))
+            if (!this.getPiece(tempSquare)) {
+                moves.push(tempSquare);
+            } else {
+                break;
+            }
+        }
     }
 }

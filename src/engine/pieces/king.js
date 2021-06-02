@@ -9,19 +9,15 @@ export default class King extends Piece {
     getAvailableMoves(board) {
         const location = board.findPiece(this);
         const moves = [];
-        
-        for (let i = 1; i < 2; i ++){
-            moves.push(new Square(location.row + i, location.col + i));
-            moves.push(new Square(location.row + i, location.col - i));
-            moves.push(new Square(location.row - i, location.col - i));
-            moves.push(new Square(location.row - i, location.col + i));
-            moves.push(new Square(location.row + i, location.col));
-            moves.push(new Square(location.row - i, location.col));
-            moves.push(new Square(location.row, location.col - i));
-            moves.push(new Square(location.row, location.col + i));
-        }
 
-        const legalMoves = board.filterMoves(moves);
-        return legalMoves;
+        board.runMoves(1, 1, location, moves, 1);
+        board.runMoves(1, 0, location, moves, 1);
+        board.runMoves(1, -1, location, moves, 1);
+        board.runMoves(0, 1, location, moves, 1);
+        board.runMoves(0, -1, location, moves, 1);
+        board.runMoves(-1, 1, location, moves, 1);
+        board.runMoves(-1, 0, location, moves, 1);
+        board.runMoves(-1, -1, location, moves, 1);
+        return moves;        
     }
 }

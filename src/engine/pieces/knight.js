@@ -8,16 +8,15 @@ export default class Knight extends Piece {
 
     getAvailableMoves(board) {
         const location = board.findPiece(this); 
-        const moves = []; 
-        moves.push(new Square(location.row + 2, location.col + 1));
-        moves.push(new Square(location.row + 2, location.col - 1));
-        moves.push(new Square(location.row + 1, location.col + 2));
-        moves.push(new Square(location.row + 1, location.col - 2));
-        moves.push(new Square(location.row - 1, location.col + 2));
-        moves.push(new Square(location.row - 1, location.col - 2));
-        moves.push(new Square(location.row - 2, location.col + 1));
-        moves.push(new Square(location.row - 2, location.col - 1));
-        const legalMoves = board.filterMoves(moves);
-        return legalMoves;
+        let moves = [];
+        board.runMoves(2, 1, location, moves, 1);
+        board.runMoves(2, -1, location, moves, 1);
+        board.runMoves(1, 2, location, moves, 1);
+        board.runMoves(1, -2, location, moves, 1);
+        board.runMoves(-1, 2, location, moves, 1);
+        board.runMoves(-1, -2, location, moves, 1);
+        board.runMoves(-2, 1, location, moves, 1);
+        board.runMoves(-2, -1, location, moves, 1);
+        return moves;
     }
 }
