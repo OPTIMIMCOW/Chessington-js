@@ -21,7 +21,11 @@ export default class Board {
     }
 
     getPiece(square) {
-        return this.board[square.row][square.col];
+        if(square.row < 8 && square.row >= 0 && square.col < 8 && square.col >= 0){
+            return this.board[square.row][square.col];
+        }else{
+            return false;
+        }
     }
 
     findPiece(pieceToFind) {

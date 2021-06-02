@@ -36,7 +36,6 @@ export default class Pawn extends Piece {
             }
         }   
         const legalMoves = board.filterMoves(moves);
-        console.log(legalMoves);
         return legalMoves;
     }
 }
