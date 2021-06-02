@@ -17,9 +17,7 @@ export default class Bishop extends Piece {
             for (let c=0; c<8; c++) {
                 const tempSquare = new Square(r,c);
                 if (r+c === sumLocation) {
-
                     // if (tempSquare == location) ////////// TALK TO OSKAR
-
                     if ((r === location.row)&&(c=== location.col)) {
                         break;
                     }
@@ -29,7 +27,6 @@ export default class Bishop extends Piece {
                 } 
             }
         }
-        console.log(legalMoves);
         return legalMoves;
     }
 }
