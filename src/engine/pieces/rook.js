@@ -8,17 +8,16 @@ export default class Rook extends Piece {
 
     getAvailableMoves(board) {
         const location = board.findPiece(this);
-        const legalMoves=[];
-        for (let c = 0; c < 8; c++){
-            if (location.col !== c){
-                legalMoves.push(Square.at(location.row, c));
-            }
+        const moves = [];
+        
+        for (let i = 1; i < 8; i ++){
+            moves.push(new Square(location.row + i, location.col));
+            moves.push(new Square(location.row - i, location.col));
+            moves.push(new Square(location.row, location.col - i));
+            moves.push(new Square(location.row, location.col + i));
         }
-        for (let r = 0; r < 8; r++){
-            if (location.row !== r){
-                legalMoves.push(Square.at(r, location.col));
-            }
-        }
+
+        const legalMoves = board.filterMoves(moves);
         return legalMoves;
     }
 }
