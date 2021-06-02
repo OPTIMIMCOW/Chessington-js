@@ -43,4 +43,8 @@ export default class Board {
             this.currentPlayer = (this.currentPlayer === Player.WHITE ? Player.BLACK : Player.WHITE);
         }
     }
+
+    filterMoves(moves){
+        return moves.filter(square => square.row < 8 && square.row >= 0 && square.col < 8 && square.col >= 0);
+    }
 }

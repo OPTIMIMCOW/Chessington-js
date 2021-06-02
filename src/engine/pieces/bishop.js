@@ -8,24 +8,16 @@ export default class Bishop extends Piece {
 
     getAvailableMoves(board) {
         const location = board.findPiece(this);
-        const legalMoves = [];
-
-        const sumLocation = location.row + location.col;
-        const subtractLocation = location.row - location.col;
-
-        for (let r = 0; r < 8; r++) {
-            for (let c = 0; c < 8; c++) {
-                const tempSquare = new Square(r, c);
-                if (!tempSquare.equals(location)) {
-                    if (r + c === sumLocation) {
-                        legalMoves.push(tempSquare);
-                    } 
-                    if (r - c === subtractLocation) {
-                        legalMoves.push(tempSquare);
-                    }
-                }
-            }
+        const moves = [];
+        
+        for (let i = 1; i < 8; i ++){
+            moves.push(new Square(location.row + i, location.col + i));
+            moves.push(new Square(location.row + i, location.col - i));
+            moves.push(new Square(location.row - i, location.col - i));
+            moves.push(new Square(location.row - i, location.col + i));
         }
+
+        const legalMoves = board.filterMoves(moves);
         return legalMoves;
     }
 }
