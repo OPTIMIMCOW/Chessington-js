@@ -8,15 +8,16 @@ export default class Queen extends Piece {
 
     getAvailableMoves(board) {
         const location = board.findPiece(this);
-        let moves = [];
-        board.runMoves(1, 0, location, moves, 7);
-        board.runMoves(-1, 0, location, moves, 7);
-        board.runMoves(0, 1, location, moves, 7);
-        board.runMoves(0, -1, location, moves, 7);
-        board.runMoves(1, 1, location, moves, 7);
-        board.runMoves(-1, 1, location, moves, 7);
-        board.runMoves(-1, -1, location, moves, 7);
-        board.runMoves(1, -1, location, moves, 7);
+        const moves = [];
+        const maxMoves = 7;
+        board.runMoves(1, 0, location, moves, maxMoves, this);
+        board.runMoves(-1, 0, location, moves, maxMoves, this);
+        board.runMoves(0, 1, location, moves, maxMoves, this);
+        board.runMoves(0, -1, location, moves, maxMoves, this);
+        board.runMoves(1, 1, location, moves, maxMoves, this);
+        board.runMoves(-1, 1, location, moves, maxMoves, this);
+        board.runMoves(-1, -1, location, moves, maxMoves, this);
+        board.runMoves(1, -1, location, moves, maxMoves, this);
         return moves;
     }
 }

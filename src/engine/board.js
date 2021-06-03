@@ -1,6 +1,7 @@
 import Player from './player';
 import GameSettings from './gameSettings';
 import Square from './square';
+import King from './pieces/king';
 
 export default class Board {
     constructor(currentPlayer) {
@@ -21,11 +22,7 @@ export default class Board {
     }
 
     getPiece(square) {
-        if (square.row < 8 && square.row >= 0 && square.col < 8 && square.col >= 0) {
-            return this.board[square.row][square.col];
-        } else {
-            return true;
-        }
+        return this.board[square.row][square.col];
     }
 
     findPiece(pieceToFind) {
@@ -48,15 +45,29 @@ export default class Board {
         }
     }
 
-    filterMoves(moves) {
+    onBoard(square) {
+        return square.row < 8 && square.row >= 0 && square.col < 8 && square.col >= 0;
+    }
+
+    filterMovesOnBoard(moves) {
         return moves.filter(square => square.row < 8 && square.row >= 0 && square.col < 8 && square.col >= 0);
     }
 
-    runMoves(row, col, location, moves, maxMoves) {
-        for (let i = 1; i <= maxMoves; i++){
-            let tempSquare = new Square(location.row + (i*row), location.col + (i*col))
-            if (!this.getPiece(tempSquare)) {
-                moves.push(tempSquare);
+    runMoves(row, col, location, moves, maxMoves, ourPiece) {
+        for (let i = 1; i <= maxMoves; i++) {
+            let tempSquare = new Square(location.row + (i * row), location.col + (i * col));
+            if (this.onBoard(tempSquare)) {
+                const getPiece = this.getPiece(tempSquare);
+                if (!getPiece) {
+                    moves.push(tempSquare);
+                } else {
+                    if (ourPiece.player === getPiece.player || getPiece instanceof King) {
+                        break;
+                    } else {
+                        moves.push(tempSquare);
+                        break;
+                    }
+                }
             } else {
                 break;
             }

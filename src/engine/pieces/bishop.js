@@ -9,11 +9,11 @@ export default class Bishop extends Piece {
     getAvailableMoves(board) {
         const location = board.findPiece(this);
         const moves = [];
-        
-        board.runMoves(1, 1, location, moves, 7);
-        board.runMoves(1, -1, location, moves, 7);
-        board.runMoves(-1, 1, location, moves, 7);
-        board.runMoves(-1, -1, location, moves, 7);
+        const maxMoves = 7;
+        board.runMoves(1, 1, location, moves, maxMoves, this);
+        board.runMoves(1, -1, location, moves, maxMoves, this);
+        board.runMoves(-1, 1, location, moves, maxMoves, this);
+        board.runMoves(-1, -1, location, moves, maxMoves, this);
         return moves;
     }
 }
