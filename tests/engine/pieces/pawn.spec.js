@@ -86,7 +86,6 @@ describe('Pawn', () => {
             moves.should.not.deep.include(Square.at(5, 3));
         });
 
-        //francesca
         it('pawn promotion - pawn becomes queen at row 7', () => {
             //Arrange
             const pawn = new Pawn(Player.WHITE);

@@ -45,12 +45,12 @@ export default class Board {
             this.setPiece(fromSquare, undefined);
         }
 
-       if(movingPiece instanceof Pawn && toSquare.row === 0 || toSquare.row === 7) {
-        const queen = new Queen(movingPiece.player);
-        this.setPiece(toSquare, queen);
-       }
+        if (movingPiece instanceof Pawn && toSquare.row === 0 || toSquare.row === 7) {
+            const queen = new Queen(movingPiece.player);
+            this.setPiece(toSquare, queen);
+        }
 
-       this.currentPlayer = (this.currentPlayer === Player.WHITE ? Player.BLACK : Player.WHITE);
+        this.currentPlayer = (this.currentPlayer === Player.WHITE ? Player.BLACK : Player.WHITE);
     }
 
     onBoard(square) {
